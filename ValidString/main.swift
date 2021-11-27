@@ -8,26 +8,33 @@
 import Foundation
 
 func isValid(s: String) -> String {
-    // making a dict from string for character appearing freqwency assessment
     let mappedItems = s.map { ($0, 1) }
     print(mappedItems)
     let counts = Dictionary(mappedItems) { $0 + $1 }
     print(counts)
-    // assessment of character appearing freqwency
-    var freqs = 0
-    var diff = 0
+    var freqArr = [Int]()
     for (_, freq) in counts {
-        if freq != freqs {
-            freqs = freq
-            diff += 1
+        freqArr.append(freq)
+    }
+    print(freqArr)
+    let min = freqArr.min()
+    let max = freqArr.max()
+    if max! - min! > 1 {
+        return "NO"
+    } else {
+        var n = 0
+        for i in freqArr {
+            if i == max {
+                n += 1
+            }  
+        }
+        if n > 1 {
+            return "NO"
         }
     }
-    print(diff)
-    if diff > 2 {
-        return "NO"
-    }
+     
     return "YES"
 }
 
-print(isValid(s: "abcdefghhgfedecba"))
+print(isValid(s: "aabbc"))
 
