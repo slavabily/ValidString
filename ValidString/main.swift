@@ -22,13 +22,16 @@ func isValid(s: String) -> String {
     if max! - min! > 1 {
         return "NO"
     } else {
-        var n = 0
+        var nmax = 0
+        var nmin = 0
         for i in freqArr {
             if i == max {
-                n += 1
-            }  
+                nmax += 1
+            } else {
+                nmin += 1
+            }
         }
-        if n > 1 {
+        if nmax > 1 && nmin > 1 {
             return "NO"
         }
     }
